@@ -1,6 +1,4 @@
-if (localStorage.getItem("viewPortFlag") === null) {
-  localStorage.setItem("viewPortFlag", 'false');
-}
+var viewportIsChanged = false;
 
 var createTestButton = function () {
 	var testButton = document.createElement('button');
@@ -8,19 +6,7 @@ var createTestButton = function () {
 	testButton.textContent = 'Change Viewport';
 
 	testButton.addEventListener('click', function () {
-
-		var viewPortVar = localStorage.getItem("viewPortFlag");
-
-		if (viewPortVar == 'false') {
-			localStorage.setItem("viewPortFlag", 'true');
-			console.log(localStorage.getItem("viewPortFlag"));
-		} else {
-			localStorage.setItem("viewPortFlag", 'false');
-			console.log(localStorage.getItem("viewPortFlag"));
-		}
-
-		console.log(localStorage.getItem("viewPortFlag"));
-
+		viewportIsChanged = !viewportIsChanged;
 		changeViewPort();
 	});
 
@@ -31,7 +17,7 @@ var createTestButton = function () {
 var changeViewPort = function () {
 	var viewPort = document.querySelector('head meta[name="viewport"]');
 
-	if (localStorage.getItem("viewPortFlag") == 'true') {
+	if (viewportIsChanged) {
 		viewPort.setAttribute('content', 'width = 1024');
 	} else {
 		viewPort.setAttribute('content', 'width=device-width, initial-scale=1');
@@ -39,5 +25,3 @@ var changeViewPort = function () {
 }
 
 createTestButton();
-
-changeViewPort();
