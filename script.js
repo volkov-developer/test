@@ -13,13 +13,9 @@ var createTestButton = function () {
 
 		if (viewPortVar == 'false') {
 			localStorage.setItem("viewPortFlag", 'true');
-			console.log(localStorage.getItem("viewPortFlag"));
 		} else {
 			localStorage.setItem("viewPortFlag", 'false');
-			console.log(localStorage.getItem("viewPortFlag"));
 		}
-
-		console.log(localStorage.getItem("viewPortFlag"));
 
 		changeViewPort();
 	});
